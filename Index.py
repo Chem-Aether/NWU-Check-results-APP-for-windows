@@ -40,7 +40,7 @@ class Login():
     # 获取公钥密码
     def get_public_key(self):
 
-        result = self.sessions.get(self.PublicKey + str(self.time)).json()
+        result = self.sessions.get(self.PublicKey + str(self.time),verify=False).json()
         self.modules = result["modulus"]
         #print(self.modules)
 
@@ -142,6 +142,7 @@ class Seek():
             ClassScheduleList.append([ClassName,ClassTime,ClassRoom,WeekDay,WeekDayNum,Teacher])
         print(ClassScheduleList)
         return ClassScheduleList
+# 数据清洗
 
     #查询成绩
     def get_TestResult(self):
@@ -223,6 +224,7 @@ class Seek():
             except:pass
         return RemarkResultList
 
+# pyqt5_tools
 
 class Windows():
     def __init__(self,JSON):
@@ -245,7 +247,8 @@ class Windows():
 
     def InitUI(self):
         self.UI = uic.loadUi("UI0.ui")
-
+#钩子函数hook
+        # 绑定
         self.UI.TestResult.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.UI.TestResult.setSelectionBehavior(QAbstractItemView.SelectRows)
 
@@ -325,3 +328,5 @@ if __name__ == '__main__':
 
     sys.exit(app.exec_())
 
+#发请求，解析数据，画图形化窗口
+#调库
